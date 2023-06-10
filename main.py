@@ -33,6 +33,10 @@ def conn_close(conn):
 # create a address function
 @app.route('/addresses', methods=['POST'])
 def create_address():
+    '''
+    func: Used to create or newly add the address
+    param: api key
+    '''
     try:
         data = flask.request.get_json()
         address = data['address']
@@ -63,6 +67,11 @@ def create_address():
 # update existed address
 @app.route('/addresses/<int:_id>', methods=['PUT'])
 def update_address(_id):
+    '''
+    func : used to update the existed address
+    param: _id for fetch the required data
+    
+    '''
     try:
         data = flask.request.get_json()
         address = data['address']
@@ -93,6 +102,11 @@ def update_address(_id):
 # delete existed address
 @app.route('/addresses/<int:_id>', methods=['DELETE'])
 def delete_address(_id):
+    '''
+    func: used to delete the existed address
+    param: _id for fetch the required data
+    
+    '''
     try:
         conn = conn_establish()
         cursor = conn.cursor()
@@ -110,6 +124,10 @@ def delete_address(_id):
 # show all address
 @app.route('/show_addresses', methods=['GET'])
 def show_addresses():
+    '''
+    func: Help to fetch all details in a place
+    param: pass the url
+    '''
     conn = conn_establish()
     cursor = conn.cursor()
     addresses=cursor.execute('SELECT * FROM addresses') 
@@ -137,6 +155,10 @@ def show_addresses():
 
 @app.route('/show_addresses/<int:_id>', methods=['GET'])
 def show_addresses_separate(_id):
+    '''
+    func: Fetch required _id information from all
+    param: id
+    '''
     try:
         conn = conn_establish()
         cursor = conn.cursor()

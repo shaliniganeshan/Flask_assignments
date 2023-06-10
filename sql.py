@@ -14,6 +14,9 @@ def close_db_connection(conn):
     conn.close()
 
 def create_addresses_table():
+    '''
+    function: create a table with required information
+    '''
     conn = get_db_connection()
     cursor = conn.cursor()
     print(cursor)
